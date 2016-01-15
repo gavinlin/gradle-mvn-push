@@ -93,17 +93,16 @@ afterEvaluate { project ->
     }
 
     task androidJavadocs(type: Javadoc) {
-    model {
-        android {
-            sourceSets {
-                main {
-                    source = java.srcDirs
+        model {
+            android {
+                sourceSets {
+                    main {
+                        source = java.srcDirs
+                    }
                 }
+                classpath += project.files(getBootClasspath().join(File.pathSeparator))
             }
-            classpath += project.files(getBootClasspath().join(File.pathSeparator))
         }
-    }
-        //source = android.sourceSets.main.java.srcDirs
     }
 
     task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
@@ -122,11 +121,10 @@ afterEvaluate { project ->
                 }
             }
         }
-        //from android.sourceSets.main.java.sourceFiles
     }
 
     artifacts {
         archives androidSourcesJar
-//        archives androidJavadocsJar
+        archives androidJavadocsJar
     }
 }
