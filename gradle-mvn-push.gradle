@@ -100,10 +100,10 @@ afterEvaluate { project ->
                     source = java.srcDirs
                 }
             }
+            classpath += project.files(getBootClasspath().join(File.pathSeparator))
         }
     }
         //source = android.sourceSets.main.java.srcDirs
-        classpath += project.files(model.android.getBootClasspath().join(File.pathSeparator))
     }
 
     task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
